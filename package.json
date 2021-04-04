@@ -1,0 +1,27 @@
+{
+  "name": "skill-wallet-subgraph",
+  "version": "1.0.0",
+  "keywords": [
+    "ethereum",
+    "distributed-town",
+    "skill-wallet"
+  ],
+  "private": true,
+  "scripts": {
+    "run-node": "cd docker/graph-node && docker-compose up",
+    "remove-node": "cd docker/graph-node && docker-compose down",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ GITHUB_USERNAME/skill-wallet",
+    "create-local": "graph create --node http://localhost:8020/ skill-wallet/your-contract",
+    "remove-local": "graph remove --node http://localhost:8020/ skill-wallet/your-contract",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 skill-wallet/your-contract"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.18.0",
+    "@graphprotocol/graph-ts": "0.18.0"
+  },
+  "devDependencies": {
+    "mustache": "^3.1.0"
+  }
+}

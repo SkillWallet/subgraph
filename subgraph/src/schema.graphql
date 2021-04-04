@@ -1,0 +1,39 @@
+type SkillWallet @entity {
+  id: ID!
+  tokenId: BigInt!
+  owner: Member!
+  activeCommunity: Community!
+  communityHistory: [Community!]
+  skillSet: SkillSet!
+  createdAt: BigInt!
+}
+
+type Member @entity {
+  id: ID!
+  skillWallet: SkillWallet!
+  ditoCredits: BigInt!
+}
+
+type Community @entity {
+  id: ID!
+  tokenId: BigInt!
+  ditoCredits: BigInt!
+  membershipAddress: Bytes!
+  name: String!
+  skillWallets: [SkillWallet]! @derivedFrom(field: "activeCommunity")
+  communityCreator: Member!
+  createdAt: BigInt!
+}
+
+
+type SkillSet @entity {
+  id: ID!
+  skills: [Skill!]
+}
+
+type Skill @entity {
+  id: ID!
+  displayId: BigInt!
+  posValue: BigInt!
+  level: BigInt!
+}
