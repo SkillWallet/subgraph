@@ -5,8 +5,8 @@ import {
   SkillWalletActivated,
   SkillSetUpdated,
   SkillWalletCommunityChanged
-} from "../generated/SkillWallet/SkillWallet"
-import { SkillWallet, Community, SkillSet, Skill } from "../generated/schema"
+} from "../../generated/SkillWallet/SkillWallet"
+import { SkillWallet, Community, SkillSet, Skill } from "../../generated/schema"
 
 
 export function handleCreate(event: SkillWalletCreated): void {
@@ -17,6 +17,14 @@ export function handleCreate(event: SkillWalletCreated): void {
   let skillSet = event.params.skillSet;
 
   // TODO: Parse skillSet into Skill and wrap it into SkillSet
+
+  let community = Community.load(communityAddressString);
+  if(community == null) {
+    community = new Community(communityAddressString);
+    community.address = event.params.community;
+    community.save();
+  }
+
 
   let skillWallet = new SkillWallet(tokenId);
 

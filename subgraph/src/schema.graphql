@@ -1,7 +1,7 @@
 type SkillWallet @entity {
   id: ID!
   tokenId: BigInt!
-  owner: bytes!
+  owner: Bytes!
   activeCommunity: Community!
   communityHistory: [Community!]
   skillSet: SkillSet!

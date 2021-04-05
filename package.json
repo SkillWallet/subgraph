@@ -13,9 +13,9 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ GITHUB_USERNAME/skill-wallet",
-    "create-local": "graph create --node http://localhost:8020/ skill-wallet/your-contract",
-    "remove-local": "graph remove --node http://localhost:8020/ skill-wallet/your-contract",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 skill-wallet/your-contract"
+    "create-local": "graph create --node http://localhost:8020/ SkillWallet/SkillWallet",
+    "remove-local": "graph remove --node http://localhost:8020/ SkillWallet/SkillWallet",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 SkillWallet/SkillWallet"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",

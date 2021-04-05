@@ -29,6 +29,6 @@ dataSources:
           handler: handleActivate
         - event: SkillSetUpdated(indexed skillWalletId,newSkillSet)
           handler: handleSkillSetUpdate
-        - event: SkillWalletCommunityChanged(indexed skillWalletId,newCommunity)
+        - event: SkillWalletCommunityChanged(indexed uint256,address)
           handler: handleCommunityChange
       file: ./src/mapping.ts
