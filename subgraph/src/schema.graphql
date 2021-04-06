@@ -4,7 +4,7 @@ type SkillWallet @entity {
   owner: Bytes!
   activeCommunity: Community!
   communityHistory: [Community!]
-  skillSet: SkillSet!
+#  skillSet: Bytes!
   activated: Boolean!
   createdAt: BigInt!
 }
@@ -30,17 +30,4 @@ type Community @entity {
   id: ID!
   address: Bytes!
   skillWallets: [SkillWallet]! @derivedFrom(field: "activeCommunity")
-}
-
-
-type SkillSet @entity {
-  id: ID!
-  skills: [Skill!]
-}
-
-type Skill @entity {
-  id: ID!
-  displayId: BigInt!
-  posValue: BigInt!
-  level: BigInt!
 }

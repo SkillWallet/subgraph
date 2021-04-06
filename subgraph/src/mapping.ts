@@ -6,7 +6,7 @@ import {
   SkillSetUpdated,
   SkillWalletCommunityChanged
 } from "../../generated/SkillWallet/SkillWallet"
-import { SkillWallet, Community, SkillSet, Skill } from "../../generated/schema"
+import { SkillWallet, Community } from "../../generated/schema"
 
 
 export function handleCreate(event: SkillWalletCreated): void {
@@ -14,7 +14,6 @@ export function handleCreate(event: SkillWalletCreated): void {
   let skillWalletOwnerString = event.params.skillWalletOwner.toHexString()
   let communityAddressString = event.params.community.toHexString()
   let tokenId = event.params.skillWalletId.toHex()
-  let skillSet = event.params.skillSet;
 
   // TODO: Parse skillSet into Skill and wrap it into SkillSet
 
@@ -32,7 +31,7 @@ export function handleCreate(event: SkillWalletCreated): void {
   skillWallet.owner = event.params.skillWalletOwner;
   skillWallet.activeCommunity = communityAddressString;
   skillWallet.communityHistory.push(communityAddressString);
-  skillWallet.skillSet = skillSet;
+  // skillWallet.skillSet = skillSet.toTupleArray();
   skillWallet.activated = false;
   skillWallet.createdAt = event.block.timestamp
 
@@ -49,23 +48,23 @@ export function handleActivate(event: SkillWalletActivated): void {
 
 }
 
-export function handleSkillSetUpdate(event: SkillSetUpdated): void {
-
-  let tokenId = event.params.skillWalletId.toHex()
-  let newSkillSet = event.params.newSkillSet;
-
-  let skillWallet = SkillWallet.load(tokenId);
-
-  skillWallet.skillSet = newSkillSet;
-
-  skillWallet.save();
-
-}
+// export function handleSkillSetUpdate(event: SkillSetUpdated): void {
+//
+//   let tokenId = event.params.skillWalletId.toHex()
+//   let newSkillSet = event.params.newSkillSet;
+//
+//   let skillWallet = SkillWallet.load(tokenId);
+//
+//   skillWallet.skillSet = newSkillSet;
+//
+//   skillWallet.save();
+//
+// }
 
 export function handleCommunityChange(event: SkillWalletCommunityChanged): void {
 
   let tokenId = event.params.skillWalletId.toHex()
-  let newCommunityAddressString = event.params.community.toHexString()
+  let newCommunityAddressString = event.params.newCommunity.toHexString()
 
   let skillWallet = SkillWallet.load(tokenId);
 
