@@ -1,12 +1,10 @@
 import { BigInt, Address } from "@graphprotocol/graph-ts"
 import {
-  SkillWallet,
   SkillWalletCreated,
   SkillWalletActivated,
-  SkillSetUpdated,
   SkillWalletCommunityChanged
 } from "../../generated/SkillWallet/SkillWallet"
-import { SkillWallet, Community } from "../../generated/schema"
+import { SkillWallet, Community, Member } from "../../generated/schema"
 
 
 export function handleCreate(event: SkillWalletCreated): void {
@@ -20,15 +18,13 @@ export function handleCreate(event: SkillWalletCreated): void {
   let community = Community.load(communityAddressString);
   if(community == null) {
     community = new Community(communityAddressString);
-    community.address = event.params.community;
     community.save();
   }
 
 
   let skillWallet = new SkillWallet(tokenId);
 
-  skillWallet.tokenId = event.params.skillWalletId;
-  skillWallet.owner = event.params.skillWalletOwner;
+  skillWallet.owner = skillWalletOwnerString;
   skillWallet.activeCommunity = communityAddressString;
   skillWallet.communityHistory.push(communityAddressString);
   // skillWallet.skillSet = skillSet.toTupleArray();
@@ -36,6 +32,13 @@ export function handleCreate(event: SkillWalletCreated): void {
   skillWallet.createdAt = event.block.timestamp
 
   skillWallet.save();
+
+  let member = Member.load(skillWalletOwnerString)
+  if(member == null) {
+    member = new Member(skillWalletOwnerString)
+    member.skillWallet = tokenId;
+  }
+
 }
 
 export function handleActivate(event: SkillWalletActivated): void {
