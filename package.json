@@ -12,6 +12,8 @@
     "remove-node": "cd docker/graph-node && docker-compose down",
     "codegen": "graph codegen",
     "build": "graph build",
+    "prepare:matic": "mustache config/maticMainnet.json subgraph/src/subgraph.template.yaml > subgraph.yaml",
+    "prepare:mumbai": "mustache config/maticTestnet.json subgraph/src/subgraph.template.yaml > subgraph.yaml",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ skillwallet/skill-wallet",
     "create-local": "graph create --node http://localhost:8020/ SkillWallet/SkillWallet",
     "remove-local": "graph remove --node http://localhost:8020/ SkillWallet/SkillWallet",

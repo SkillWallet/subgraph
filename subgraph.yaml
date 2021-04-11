@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: SkillWallet
-    network: mumbai
+    network: matic
     source:
-      address: '0x239D5940DCaD8e86Ad72E2F36C772300c67E6fC0'
+      address: '0x14DEF8Be678589dd1445A46Fc5bE925d479694B9'
       abi: SkillWallet
-      startBlock: 12495356
+      startBlock: 13154407
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -20,7 +20,7 @@ dataSources:
         - name: SkillWallet
           file: ./subgraph/abis/SkillWallet.json
       eventHandlers:
-        - event: SkillWalletCreated(indexed address,indexed address,indexed uint256,((uint64,uint8),(uint64,uint8),(uint64,uint8)))
+        - event: SkillWalletCreated(indexed address,indexed address,indexed uint256,((uint256,uint256),(uint256,uint256),(uint256,uint256)),uint256)
           handler: handleCreate
         - event: SkillWalletActivated(indexed uint256)
           handler: handleActivate
@@ -29,11 +29,11 @@ dataSources:
       file: ./subgraph/src/skillwallet-mapping.ts
   - kind: ethereum/contract
     name: CommunitiesRegistry
-    network: mumbai
+    network: matic
     source:
-      address: '0x0AE5d80b1089A12A4cc0D4ECc84Ecb7f487CEB2C'
+      address: '0xB4Dcc7cE6C7e8E5595fBC708b09123A86360e3e2'
       abi: CommunitiesRegistry
-      startBlock: 12495356
+      startBlock: 13154407
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -51,7 +51,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Community
-    network: mumbai
+    network: matic
     source:
       abi: Community
     mapping:
